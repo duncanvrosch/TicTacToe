@@ -137,13 +137,23 @@
         android:textSize="20dp"
         android:visibility="invisible" />
 
+    <TextView
+        android:id="@+id/Start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="TILE IS NOT EMPTY. TRY AGAIN!"
+        android:textSize="20dp"
+        android:visibility="invisible" />
+
     <Button
         android:id="@+id/button12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:onClick="resetClicked"
-        android:text="RESET"
-        android:textSize="20dp"/>
+        android:text="NEW GAME"
+        android:textSize="20dp" />
 
 </LinearLayout>

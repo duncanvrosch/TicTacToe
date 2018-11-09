@@ -87,18 +87,24 @@ public class MainActivity extends AppCompatActivity {
 
             switch (state) {
                 case CROSS:
+                    TextView start = (TextView) findViewById(R.id.Start);
+                    start.setVisibility(View.INVISIBLE);
                     button.setText("X");
                     turnMade = true;
                     Turn = Turn + 1;
                     break;
 
                 case CIRCLE:
+                    TextView start1 = (TextView) findViewById(R.id.Start);
+                    start1.setVisibility(View.INVISIBLE);
                     button.setText("O");
                     turnMade = true;
                     Turn = Turn + 1;
                     break;
 
                 case INVALID:
+                    TextView start2 = (TextView) findViewById(R.id.Start);
+                    start2.setVisibility(View.VISIBLE);
                     break;
             }
 
@@ -106,25 +112,21 @@ public class MainActivity extends AppCompatActivity {
 
                 gamestate = game.won(Turn);
 
-                // if still in progress, do nothing
                 if (gamestate == GameState.IN_PROGRESS) {
                 }
 
-                // if player one has won, show message
                 else if (gamestate == GameState.PLAYER_ONE) {
                     TextView one = (TextView) findViewById(R.id.One);
                     one.setVisibility(View.VISIBLE);
                     gameWon = true;
                 }
 
-                // if player two has won, show message
                 else if (gamestate == GameState.PLAYER_TWO) {
                     TextView two = (TextView) findViewById(R.id.Two);
                     two.setVisibility(View.VISIBLE);
                     gameWon = true;
                 }
 
-                // if draw, set drawtext to visible
                 else if (gamestate == GameState.DRAW) {
                     TextView draw = (TextView) findViewById(R.id.Draw);
                     draw.setVisibility(View.VISIBLE);
