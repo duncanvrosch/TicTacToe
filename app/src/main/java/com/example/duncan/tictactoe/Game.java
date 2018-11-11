@@ -1,11 +1,13 @@
 package com.example.duncan.tictactoe;
 
-public class Game {
+import java.io.Serializable;
+
+public class Game implements Serializable {
     final private int BOARD_SIZE = 3;
-    private TileState[][] board;
+    public TileState[][] board;
 
     private Boolean playerOneTurn;  // true if player 1's turn, false if player 2's turn
-    private Boolean gameOver;
+    public int movesPlayed;
 
     public Game() {
         board = new TileState[BOARD_SIZE][BOARD_SIZE];
@@ -14,7 +16,7 @@ public class Game {
                 board[i][j] = TileState.BLANK;
 
         playerOneTurn = true;
-        gameOver = false;
+        movesPlayed = 0;
     }
 
     public TileState choose(int row, int column) {
@@ -23,6 +25,8 @@ public class Game {
         switch (tile) {
 
             case BLANK:
+
+                movesPlayed += 1;
 
                 if (playerOneTurn) {
                     board[row][column] = TileState.CROSS;
@@ -41,7 +45,7 @@ public class Game {
         }
     }
 
-    public GameState won(int Turn) {
+    public GameState won() {
 
         if (!playerOneTurn) {
 
@@ -61,7 +65,7 @@ public class Game {
                 return GameState.PLAYER_ONE;
             }
 
-            if (Turn == 9) {
+            if (movesPlayed == 9) {
                 return GameState.DRAW;
             }
         }
@@ -75,9 +79,6 @@ public class Game {
                 if (board[0][i] == TileState.CIRCLE && board[1][i] == TileState.CIRCLE && board[2][i] == TileState.CIRCLE) {
                     return GameState.PLAYER_TWO;
                 }
-                if (Turn == 9) {
-                    return GameState.DRAW;
-                }
             }
 
             if (board[0][0] == TileState.CIRCLE && board[1][1] == TileState.CIRCLE && board[2][2] == TileState.CIRCLE) {
@@ -86,7 +87,7 @@ public class Game {
             if (board[0][2] == TileState.CIRCLE && board[1][1] == TileState.CIRCLE && board[2][0] == TileState.CIRCLE) {
                 return GameState.PLAYER_TWO;
             }
-            if (Turn == 9) {
+            if (movesPlayed == 9) {
                 return GameState.DRAW;
             }
         }
